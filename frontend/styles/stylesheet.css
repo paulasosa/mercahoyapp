@@ -1,7 +1,33 @@
-.nav-container {
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+body {
+    padding: 3%;
     max-width: 90%;
-    max-height: 70px;
+    max-height: fit-content;
+}
+header{
+    background-color: #95bd8d60;
+}
+nav {
+    height: 70px;
+}
+.nav-container {
+    display: grid;
+    grid-template-columns: 9fr 1fr 1fr 1fr 1fr 1fr;
+    max-width: fit-content;
+    max-height: 10%;
+    gap: 5%;
+    padding: 2%;
 }
 .nav-container img {
-    max-width: 70px;
+    max-width: fit-content;
+    max-height: 10%;
+    border-radius: 20%;
+}
+main {
+    margin-bottom: 5%;
+    margin-top: 5%;
 }
