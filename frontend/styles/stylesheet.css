@@ -1,13 +1,13 @@
-.nav {
-    display: inline-flex;
+.header {
+    display: flex;
+    gap: 20px;
 }
 .left img {
-    max-width: 90%;
-    max-height: 50px;
-    display: inline-flex;
-    align-content: flex-start;
+    justify-content: left;
+    max-width: 70px;
+    max-height: 70px;
 }
+
 .right {
-    display: inline-flex;
-    align-content: flex-end;
+    justify-content: right;
 }
