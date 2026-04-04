@@ -1,0 +1,13 @@
+.nav {
+    display: inline-flex;
+}
+.left img {
+    max-width: 90%;
+    max-height: 50px;
+    display: inline-flex;
+    align-content: flex-start;
+}
+.right {
+    display: inline-flex;
+    align-content: flex-end;
+}
