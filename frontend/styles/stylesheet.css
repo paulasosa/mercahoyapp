@@ -1,13 +1,7 @@
-.header {
-    display: flex;
-    gap: 20px;
-}
-.left img {
-    justify-content: left;
-    max-width: 70px;
+.nav-container {
+    max-width: 90%;
     max-height: 70px;
 }
-
-.right {
-    justify-content: right;
+.nav-container img {
+    max-width: 70px;
 }
