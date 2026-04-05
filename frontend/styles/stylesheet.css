@@ -8,11 +8,18 @@ body {
     max-width: 90%;
     max-height: fit-content;
 }
+a {
+    text-decoration: none;
+}
+
+
+/*HEADER*/
+
 header{
-    background-color: #95bd8d60;
+    background-color: #7d8f7a38;
 }
 nav {
-    height: 70px;
+    height: 60px;
 }
 .nav-container {
     display: grid;
@@ -27,7 +34,44 @@ nav {
     max-height: 10%;
     border-radius: 20%;
 }
+
+
+/*MAIN*/
 main {
-    margin-bottom: 5%;
-    margin-top: 5%;
+    background-color: #bffdab0c;
+}
+.card {
+    display: grid;
+    justify-content: center;
+    min-width: 400px;
+    max-width: 96%;
+    padding: 2%;
+    height: fit-content;
+    max-height: fit-content;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;    
+    
+}
+.card_product img {
+    max-width: 200px;
+    max-height: 200px;
+    height: fit-content;
+}
+.card_product {
+    border-radius: 5%;
+    border: solid #141e12 2px;
+    text-align: center;
+}
+
+/*FOOTER*/
+
+footer {
+    text-align: center;
+    padding: 2%;
+}
+footer p {
+    padding: 1%;
+}
+footer button {
+
 }
