@@ -34,7 +34,9 @@ nav {
     max-height: 10%;
     border-radius: 20%;
 }
-
+nav a {
+    margin-top: 15px;
+}
 
 /*MAIN*/
 main {
@@ -71,4 +73,18 @@ footer {
 }
 footer p {
     padding: 1%;
+}
+
+#links:hover {
+    background-color: #2c412d44;
+}
+
+#links {
+    max-height: fit-content;
+}
+button:hover { 
+    background-color: #2c412d44;
+}
+button {
+    padding: 5px;
 }
