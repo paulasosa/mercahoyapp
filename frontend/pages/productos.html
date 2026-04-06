@@ -19,36 +19,22 @@
   </header>
   
   <main>
+    
     <h2>PRODUCTOS</h2>
-    <!--
-    <section class="container">
-      <!--Container principal
-      <article class="card">
-        <p>PRODUCTOS</p>
-        <a href="./pages/productos.html">
-          Ingresa a los productos.
-        </a>   
-      </article>
-      <article class="card">
-        <p>SUPERMERCADOS</p>
-        <a href="./pages/super.html">
-          Ingresa a la lista de supermercados.
-        </a>   
-      </article>
-      <article class="card">
-        <p>COMPARADOR</p>
-        <a href="./pages/compara.html">
-          Ingresa al comparador de precios.
-        </a>   
-      </article>
-      <article class="card">
-        <p>REGISTRO USUARIO</p>
-        <a href="./pages/registro.html">
-          Ingresa al registro de usuarios.
-        </a>    
-      </article>
-    </section>
-    -->
+    
+    <!--BUSQUEDA PRODUCTOS-->
+
+    <div class="input-group">
+      <div class="form-outline" data-mdb-input-init>
+        <input id="search-input" type="search" id="form1" class="form-control" />
+        <label class="form-label" for="form1">Search</label>
+      </div>
+      <button id="search-button" type="button" class="btn btn-primary">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+
+    
   </main>
 
   <footer>
@@ -86,6 +72,8 @@
     <!-- End of .container -->
   </footer>
 
+  <!-- Enlace al archivo JS externo -->
+  <script src="../js/search.js"></script>
 
 </body>
 </html>
