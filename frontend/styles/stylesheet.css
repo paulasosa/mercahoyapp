@@ -77,3 +77,22 @@ button:hover {
 button {
     padding: 5px;
 }
+
+/*SEARCH BUTTON PRODUCTOS*/
+
+.input-group{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+}
+
+.form-outline {
+    margin-left: 40%;
+}
+
+#search-button {
+    margin: 1%;
+    align-items: center;
+    max-width: fit-content;
+}
