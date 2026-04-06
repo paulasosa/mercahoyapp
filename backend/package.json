@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "start:dev": "nodemon app.js"
+    "start:dev": "nodemon app.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +18,10 @@
   "dependencies": {
     "bootstrap": "^5.3.2",
     "express": "^5.2.1",
+    "mdb-ui-kit": "^9.3.0",
     "nodemon": "^3.1.14"
+  },
+  "devDependencies": {
+    "vite": "^8.0.3"
   }
 }
