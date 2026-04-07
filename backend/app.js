@@ -82,3 +82,37 @@ app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
 
+
+//CREANDO TABLE PARA LEER, ACTUALIZAR Y ELIMINAR USUARIOS
+
+const mysql = require("mysql2");
+
+// Conexión
+const conexion = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "TU_PASSWORD",
+  database: "mercadohoy"
+});
+
+// Ruta para crear tabla
+app.get("/crear-tabla", (req, res) => {
+  const sql = `
+    CREATE TABLE IF NOT EXISTS usuarios (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      nombre VARCHAR(100),
+      correo VARCHAR(100) UNIQUE,
+      clave VARCHAR(255)
+    )
+  `;
+
+  conexion.query(sql, (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error al crear tabla");
+    }
+
+    res.send("Tabla creada correctamente");
+  });
+});
+

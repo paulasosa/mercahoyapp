@@ -41,3 +41,17 @@ form.addEventListener("submit", async (e) => {
     alert("Error de conexión con el servidor");
   }
 });
+
+// CREANDO TABLE PARA CRUD
+
+async function crearTabla() {
+  try {
+    const res = await fetch("http://localhost:3000/crear-tabla");
+    const data = await res.text();
+
+    alert(data);
+  } catch (error) {
+    console.error(error);
+    alert("Error al conectar con el servidor");
+  }
+}
