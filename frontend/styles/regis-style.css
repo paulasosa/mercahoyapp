@@ -1,20 +1,42 @@
 .gradient-custom-3 {
 /* fallback for old browsers */
-background: #e1e2e1e3;
+background: #ffffff;
 
 /* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, #e1e2e1e3, #e1e2e1e3);
+background: -webkit-linear-gradient(to right, #ffffff, #ffffff);
 
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right,#e1e2e1e3, #e1e2e1e3)
+background: linear-gradient(to right,#ffffff, #ffffff)
 }
 .gradient-custom-4 {
 /* fallback for old browsers */
-background: #e1e2e1e3;
+background: #ffffff;
 
 /* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right,#e1e2e1e3, #e1e2e1e3);
+background: -webkit-linear-gradient(to right,#ffffff, #ffffff);
 
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right,#e1e2e1e3, #e1e2e1e3)
+background: linear-gradient(to right,#ffffff, #ffffff)
+}
+
+.vh-100{
+    margin: 1%;
+}
+
+input {
+    margin: 8px;
+}
+
+button {
+    margin: 2%;
+    border-radius: 10%;
+    max-width: fit-content;
+}
+.form-outline {
+    margin-left: 5%;
+}
+form {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 20px;
 }
