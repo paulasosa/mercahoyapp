@@ -1,3 +1,21 @@
+const mysql = require("mysql2");
+
+const conexion = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "paulasosa",
+  database: "mercadohoy"
+});
+
+conexion.connect((err) => {
+  if (err) {
+    console.error("Error de conexión:", err);
+    return;
+  }
+  console.log("Conectado a MySQL");
+});
+
+
 const express = require('express');
 const cors = require("cors");
 
@@ -26,30 +44,32 @@ let usuarios = [];
 app.post("/api/usuarios", (req, res) => {
   const { nombre, correo, clave } = req.body;
 
-  if (!nombre || !correo || !clave) {
-    return res.status(400).json({ message: "Datos incompletos" });
-  }
+  const sql = "INSERT INTO usuarios (nombre, correo, clave) VALUES (?, ?, ?)";
 
-  const existe = usuarios.find(u => u.correo === correo);
-  if (existe) {
-    return res.status(400).json({ message: "El usuario ya existe" });
-  }
+  conexion.query(sql, [nombre, correo, clave], (err, result) => {
+    if (err) {
+      console.error("ERROR SQL:", err);
+      return res.status(500).json({ message: "Error al guardar" });
+    }
 
-  const nuevoUsuario = {
-    id: usuarios.length + 1,
-    nombre,
-    correo,
-    clave
-  };
-
-  usuarios.push(nuevoUsuario);
-
-  res.status(201).json({ message: "Usuario creado", usuario: nuevoUsuario });
+    res.json({ message: "Usuario guardado" });
+  });
 });
+
+
 
 // 🔹 READ (Listar usuarios)
 app.get("/api/usuarios", (req, res) => {
-  res.json(usuarios);
+  const sql = "SELECT * FROM usuarios";
+
+  conexion.query(sql, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error al obtener usuarios" });
+    }
+
+    res.json(results);
+  });
 });
 
 // 🔹 UPDATE
@@ -80,39 +100,5 @@ app.delete("/api/usuarios/:id", (req, res) => {
 // Servidor
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
-
-
-//CREANDO TABLE PARA LEER, ACTUALIZAR Y ELIMINAR USUARIOS
-
-const mysql = require("mysql2");
-
-// Conexión
-const conexion = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "TU_PASSWORD",
-  database: "mercadohoy"
-});
-
-// Ruta para crear tabla
-app.get("/crear-tabla", (req, res) => {
-  const sql = `
-    CREATE TABLE IF NOT EXISTS usuarios (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      nombre VARCHAR(100),
-      correo VARCHAR(100) UNIQUE,
-      clave VARCHAR(255)
-    )
-  `;
-
-  conexion.query(sql, (err, result) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send("Error al crear tabla");
-    }
-
-    res.send("Tabla creada correctamente");
-  });
 });
 
