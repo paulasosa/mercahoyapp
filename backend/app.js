@@ -20,7 +20,11 @@ const express = require('express');
 const cors = require("cors");
 
 const app = express();
-const PORT = 3000;
+const port = 3000;
+
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
+});
 
 /*app.get('/', (req, res) => {
   res.send('¡Por aqui empieza el backend!');
