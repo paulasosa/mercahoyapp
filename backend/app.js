@@ -73,32 +73,36 @@ app.get("/api/usuarios", (req, res) => {
 });
 
 // 🔹 UPDATE
+
 app.put("/api/usuarios/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const { id } = req.params;
   const { nombre, correo } = req.body;
 
-  const usuario = usuarios.find(u => u.id === id);
-  if (!usuario) {
-    return res.status(404).json({ message: "Usuario no encontrado" });
-  }
+  const sql = "UPDATE usuarios SET nombre = ?, correo = ? WHERE id = ?";
 
-  usuario.nombre = nombre || usuario.nombre;
-  usuario.correo = correo || usuario.correo;
+  conexion.query(sql, [nombre, correo, id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error al actualizar" });
+    }
 
-  res.json({ message: "Usuario actualizado", usuario });
+    res.json({ message: "Usuario actualizado" });
+  });
 });
 
 // 🔹 DELETE
+
 app.delete("/api/usuarios/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const { id } = req.params;
 
-  usuarios = usuarios.filter(u => u.id !== id);
+  const sql = "DELETE FROM usuarios WHERE id = ?";
 
-  res.json({ message: "Usuario eliminado" });
+  conexion.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error al eliminar" });
+    }
+
+    res.json({ message: "Usuario eliminado" });
+  });
 });
-
-// Servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
-
