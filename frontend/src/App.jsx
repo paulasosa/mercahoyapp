@@ -1,10 +1,15 @@
+import React from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Comparador from "./pages/Comparador";
 import Carrito from "./pages/Carrito";
+
 import { CartProvider } from "./context/CartContext";
 
 function App() {
@@ -25,4 +30,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
