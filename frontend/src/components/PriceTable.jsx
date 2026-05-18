@@ -1,3 +1,4 @@
+import React from "react";
 const PriceTable = ({ products }) => {
   // Agrupar productos por nombre
   const groupedProducts = products.reduce((acc, product) => {
