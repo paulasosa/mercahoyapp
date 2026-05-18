@@ -1,46 +1,99 @@
 import React, { useState } from "react";
-import api from "../services/api";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] =
+    useState("");
+  const [password, setPassword] =
+    useState("");
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
 
-    await api.post("/auth/register", {
+    console.log({
       name,
       email,
       password,
     });
-
-    alert("Usuario registrado");
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <input
-        type="text"
-        placeholder="Nombre"
-        onChange={(e) => setName(e.target.value)}
-      />
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-6">
+      <div className="bg-white w-full max-w-md p-10 rounded-3xl shadow-xl">
+        <h1 className="text-4xl font-bold mb-8 text-center text-green-600">
+          Crear cuenta
+        </h1>
 
-      <input
-        type="email"
-        placeholder="Correo"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <form
+          onSubmit={submitHandler}
+          className="space-y-6"
+        >
+          <div>
+            <label className="block mb-2 font-semibold">
+              Nombre
+            </label>
 
-      <input
-        type="password"
-        placeholder="Contraseña"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+            <input
+              type="text"
+              placeholder="Tu nombre"
+              className="w-full border rounded-xl px-4 py-3"
+              value={name}
+              onChange={(e) =>
+                setName(e.target.value)
+              }
+            />
+          </div>
 
-      <button type="submit">Registrar</button>
-    </form>
+          <div>
+            <label className="block mb-2 font-semibold">
+              Correo
+            </label>
+
+            <input
+              type="email"
+              placeholder="correo@email.com"
+              className="w-full border rounded-xl px-4 py-3"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+            />
+          </div>
+
+          <div>
+            <label className="block mb-2 font-semibold">
+              Contraseña
+            </label>
+
+            <input
+              type="password"
+              placeholder="********"
+              className="w-full border rounded-xl px-4 py-3"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+            />
+          </div>
+
+          <button className="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold transition">
+            Registrarse
+          </button>
+        </form>
+
+        <p className="mt-6 text-center">
+          ¿Ya tienes cuenta?
+          <Link
+            to="/login"
+            className="text-green-600 font-bold ml-2"
+          >
+            Inicia sesión
+          </Link>
+        </p>
+      </div>
+    </div>
   );
 };
 
-export default Register; 
+export default Register;

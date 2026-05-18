@@ -1,66 +1,26 @@
-import React, { useEffect, useState } from "react";
-import api from "../services/api";
+import React from "react";
 
 const Favoritos = () => {
-  const [favorites, setFavorites] = useState([]);
-
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-
-        const config = {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-          },
-        };
-
-        const { data } = await api.get("/favorites", config);
-
-        setFavorites(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchFavorites();
-  }, []);
-
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Productos Favoritos</h1>
+    <div className="bg-gray-100 min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 py-10">
+        <h1 className="text-4xl font-bold mb-10">
+          Productos favoritos
+        </h1>
 
-      {favorites.length === 0 ? (
-        <p>No tienes productos favoritos.</p>
-      ) : (
-        favorites.map((favorite) => (
-          <div
-            key={favorite._id}
-            style={{
-              border: "1px solid #ccc",
-              marginBottom: "15px",
-              padding: "10px",
-              borderRadius: "10px",
-            }}
-          >
-            <h3>{favorite.product?.name}</h3>
+        <div className="bg-white p-10 rounded-2xl shadow text-center">
+          <h2 className="text-2xl font-bold mb-4">
+            No tienes favoritos aún
+          </h2>
 
-            <p>
-              Supermercado: {favorite.product?.supermarket}
-            </p>
-
-            <p>
-              Precio: ${favorite.product?.price}
-            </p>
-
-            <p>
-              Categoría: {favorite.product?.category}
-            </p>
-          </div>
-        ))
-      )}
+          <p className="text-gray-500">
+            Guarda productos para revisarlos
+            después.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Favoritos; 
+export default Favoritos;
