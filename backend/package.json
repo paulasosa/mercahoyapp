@@ -1,30 +1,20 @@
 {
-  "name": "backend",
+  "name": "mercadohoy-backend",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "start:dev": "nodemon app.js",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "nodemon app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "bcrypt": "^6.0.0",
-    "bootstrap": "^5.3.2",
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
-    "mdb-ui-kit": "^9.3.0",
-    "mysql2": "^3.22.2",
-    "nodemon": "^3.1.14"
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.1"
   },
   "devDependencies": {
-    "vite": "^8.0.3"
+    "nodemon": "^3.1.4"
   }
 }
