@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Comparador from "./pages/Comparador";
 import Carrito from "./pages/Carrito";
+import Favoritos from "./pages/Favoritos";
+import MisListas from "./pages/MisListas";
 
 import { CartProvider } from "./context/CartContext";
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/comparador" element={<Comparador />} />
           <Route path="/carrito" element={<Carrito />} />
+          <Route path="/favoritos" element={<Favoritos />} />
+          <Route path="/mis-listas" element={<MisListas />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>
