@@ -15,6 +15,14 @@ const Navbar = () => {
         <div className="flex gap-6 font-semibold">
           <Link to="/">Inicio</Link>
 
+          <Link to="/register">
+            Registro
+          </Link>
+
+          <Link to="/login">
+            Ingreso Usuarios
+          </Link>
+
           <Link to="/comparador">
             Comparador
           </Link>
