@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useCart } from "../context/CartContext";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useCart();
 
-  useEffect(() => {
-    axios.get("http://localhost:5000/api/products")
+  const fetchProducts = () => {
+    axios
+      .get("http://localhost:5000/api/products")
       .then((res) => setProducts(res.data))
       .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
 
   return (
@@ -80,7 +87,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 🛒 NUEVA SECCIÓN: PRODUCTOS */}
+      {/* 🛒 PRODUCTOS */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         <h2 className="text-4xl font-bold mb-10 text-center">
           Productos disponibles
@@ -95,16 +102,55 @@ const Home = () => {
             {products.map((p) => (
               <div
                 key={p._id}
-                className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden"
               >
-                <h3 className="text-xl font-bold mb-2">{p.name}</h3>
-                <p className="text-gray-600 mb-3">{p.category}</p>
+                {/* IMAGEN */}
+                <img
+                  src={
+                    p.image ||
+                    "https://via.placeholder.com/300x200?text=Sin+Imagen"
+                  }
+                  alt={p.name}
+                  className="w-full h-40 object-cover"
+                />
 
-                {p.prices?.map((price, index) => (
-                  <p key={index} className="text-sm text-gray-700">
-                    🏪 {price.supermarket}: ${price.price}
-                  </p>
-                ))}
+                <div className="p-4">
+                  <h3 className="text-lg font-bold mb-2">{p.name}</h3>
+                  <p className="text-gray-500 mb-3">{p.category}</p>
+
+                  {/* PRECIOS */}
+                  <div className="space-y-2">
+                    {p.prices?.map((price, index) => (
+                      <div
+                        key={index}
+                        className="flex justify-between items-center border p-2 rounded-lg"
+                      >
+                        <span className="text-sm">
+                          🏪 {price.supermarket}
+                        </span>
+
+                        <span className="font-bold">
+                          ${price.price}
+                        </span>
+
+                        {/* BOTÓN CARRITO */}
+                        <button
+                          onClick={() =>
+                            addToCart({
+                              productId: p._id,
+                              name: p.name,
+                              supermarket: price.supermarket,
+                              price: price.price
+                            })
+                          }
+                          className="bg-green-600 text-white text-xs px-3 py-1 rounded hover:bg-green-700"
+                        >
+                          Agregar
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
