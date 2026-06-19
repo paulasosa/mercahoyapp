@@ -11,10 +11,17 @@ import Comparador from "./pages/Comparador";
 import Carrito from "./pages/Carrito";
 import Favoritos from "./pages/Favoritos";
 import MisListas from "./pages/MisListas";
+import ProductList from "./components/ProductList";
 
 import { CartProvider } from "./context/CartContext";
 
 function App() {
+    return (
+    <div>
+      <ProductList />
+    </div>
+  );
+
   return (
     <CartProvider>
       <BrowserRouter

@@ -7,7 +7,19 @@ const shoppingListSchema = mongoose.Schema(
       ref: "User",
     },
     name: String,
-    products: Array,
+    products: [
+      {
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product"
+        },
+
+        quantity: {
+          type: Number,
+          default: 1
+        }
+      }
+    ]
   },
   {
     timestamps: true,
