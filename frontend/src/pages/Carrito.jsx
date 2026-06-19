@@ -1,87 +1,85 @@
-import React, { useContext } from "react";
-
+import React from "react";
 import { useCart } from "../context/CartContext";
 
 const Carrito = () => {
-  const { cart, removeFromCart } =
-    useCart();
+  const { cart } = useCart();
 
-  const total = cart.reduce(
-    (acc, item) => acc + item.price,
-    0
-  );
+  // 🧠 AGRUPAR POR SUPERMERCADO
+  const groupedCart = cart.reduce((acc, item) => {
+    const key = item.supermarket;
+
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+
+    acc[key].push(item);
+
+    return acc;
+  }, {});
+
+  // 💰 CALCULAR TOTAL POR SUPERMERCADO
+  const getTotal = (items) => {
+    return items.reduce((sum, item) => {
+      return sum + item.price * item.quantity;
+    }, 0);
+  };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <div className="max-w-6xl mx-auto px-6 py-10">
-        <h1 className="text-4xl font-bold mb-10">
-          Carrito de compras
-        </h1>
+    <div className="min-h-screen bg-gray-100 p-6">
 
-        {cart.length === 0 ? (
-          <div className="bg-white p-10 rounded-2xl shadow text-center">
-            <h2 className="text-2xl font-bold mb-4">
-              Tu carrito está vacío
+      <h1 className="text-3xl font-bold mb-6">
+        Carrito de compras
+      </h1>
+
+      {Object.keys(groupedCart).length === 0 ? (
+        <p className="text-gray-500">
+          El carrito está vacío
+        </p>
+      ) : (
+        Object.keys(groupedCart).map((supermarket) => (
+          <div key={supermarket} className="mb-8">
+
+            {/* 🏪 SUPERMERCADO */}
+            <h2 className="text-2xl font-bold text-green-700 mb-4">
+              🏪 {supermarket}
             </h2>
 
-            <p className="text-gray-500">
-              Agrega productos desde el
-              comparador.
-            </p>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2 space-y-6">
-              {cart.map((item, index) => (
+            <div className="bg-white rounded-xl shadow p-4">
+
+              {/* PRODUCTOS */}
+              {groupedCart[supermarket].map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white p-6 rounded-2xl shadow flex justify-between items-center"
+                  className="flex justify-between items-center border-b py-2"
                 >
                   <div>
-                    <h3 className="text-xl font-bold">
+                    <p className="font-semibold">
                       {item.name}
-                    </h3>
-
-                    <p className="text-gray-500">
-                      {item.supermarket}
                     </p>
 
-                    <p className="text-green-600 font-bold text-xl">
-                      ${item.price}
+                    <p className="text-sm text-gray-500">
+                      Cantidad: {item.quantity}
                     </p>
                   </div>
 
-                  <button
-                    onClick={() =>
-                      removeFromCart(index)
-                    }
-                    className="bg-red-500 text-white px-4 py-2 rounded-xl"
-                  >
-                    Eliminar
-                  </button>
+                  <div className="font-bold">
+                    ${item.price * item.quantity}
+                  </div>
                 </div>
               ))}
-            </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow h-fit">
-              <h2 className="text-2xl font-bold mb-6">
-                Resumen
-              </h2>
-
-              <p className="text-xl mb-6">
-                Total:
-                <span className="font-bold text-green-600 ml-2">
-                  ${total}
+              {/* 💰 TOTAL SUPERMERCADO */}
+              <div className="mt-4 flex justify-between items-center text-lg font-bold">
+                <span>Total {supermarket}</span>
+                <span className="text-green-700">
+                  ${getTotal(groupedCart[supermarket])}
                 </span>
-              </p>
+              </div>
 
-              <button className="w-full bg-green-600 text-white py-4 rounded-xl font-bold">
-                Finalizar compra
-              </button>
             </div>
           </div>
-        )}
-      </div>
+        ))
+      )}
     </div>
   );
 };
