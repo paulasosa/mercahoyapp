@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
-
+import React, { useEffect, useState } from "react";
 import api from "../services/api";
 import ProductCard from "../components/ProductCard";
-import { CartContext } from "../context/CartContext";
+import { useCart } from "../context/CartContext";
 
 const Comparador = () => {
   const [products, setProducts] = useState([]);
-
-  const { addToCart } = useContext(CartContext);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
