@@ -1,5 +1,4 @@
 import React from "react";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -11,17 +10,12 @@ import Comparador from "./pages/Comparador";
 import Carrito from "./pages/Carrito";
 import Favoritos from "./pages/Favoritos";
 import MisListas from "./pages/MisListas";
+
 import ProductList from "./components/ProductList";
 
 import { CartProvider } from "./context/CartContext";
 
 function App() {
-    return (
-    <div>
-      <ProductList />
-    </div>
-  );
-
   return (
     <CartProvider>
       <BrowserRouter
@@ -40,6 +34,9 @@ function App() {
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/favoritos" element={<Favoritos />} />
           <Route path="/mis-listas" element={<MisListas />} />
+
+          {/* 👇 aquí decides dónde ver productos */}
+          <Route path="/productos" element={<ProductList />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>
